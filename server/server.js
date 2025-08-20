@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express'
 import path from 'node:path'
 import cors from 'cors'
@@ -10,7 +11,7 @@ import { alterBudgets } from './alterBudgets.js'
 import { addBudget } from './addBudget.js'
 
 const app = express();
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 app.use(cors())
 
 

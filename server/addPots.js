@@ -5,7 +5,7 @@ import path from 'node:path';
 
 
 export async function addPot(name, target, total, theme) {
-    const dbPath = path.join(process.cwd(), 'database.db')
+    const dbPath = process.env.DB_PATH || path.join(process.cwd(), 'database.db')
     const db = await open({
         filename: dbPath,
         driver: sqlite3.Database

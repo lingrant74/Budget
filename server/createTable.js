@@ -4,7 +4,7 @@ import path from 'node:path'
 
 async function createTable() {
     const db = await open({
-        filename: path.join(process.cwd(),'database.db'),
+        filename: process.env.DB_PATH || path.join(process.cwd(),'database.db'),
         driver: sqlite3.Database
     })
 

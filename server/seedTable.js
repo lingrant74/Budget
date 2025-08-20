@@ -4,11 +4,12 @@ import path from 'node:path'
 import { readFile } from 'node:fs/promises';
 
 async function seedTable (){
+    const dbPath= process.env.DB_PATH || path.join(process.cwd(),'database.db')
     const db = await open({
-    filename: path.join(process.cwd(),'database.db'),
+    filename:dbPath ,
     driver: sqlite3.Database
   })
-  const jsonPath = path.join(process.cwd(), 'public', 'data.json');
+  const jsonPath = process.env.DATA_JSON_PATH || path.join(process.cwd(),'public', 'data.json');
   const file = await readFile(jsonPath, 'utf8');
   const data = JSON.parse(file);
   try {
