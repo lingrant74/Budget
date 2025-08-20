@@ -9,7 +9,7 @@ export async function deleteBudget(id) {
         e.status = 400;
         throw e;
     }
-    const dbPath = process.env.DB_PATH || path.join(process.cwd(), 'database.db');
+    const dbPath = process.env.DB_PATH || path.join(process.cwd(), 'data/database.db');
     const db = await open({
         filename: dbPath,
         driver: sqlite3.Database

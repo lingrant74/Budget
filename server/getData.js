@@ -5,7 +5,7 @@ import path from 'node:path'
 async function getData() {
     const db = await open({
 
-    filename: process.env.DB_PATH || path.join(process.cwd(), 'database.db'),
+    filename: process.env.DB_PATH || path.join(process.cwd(), 'data/database.db'),
     driver: sqlite3.Database
   })
   try {

@@ -4,7 +4,7 @@ import path from 'node:path'
 
 export default function dbProm() {
     return open({
-        filename: process.env.DB_PATH || path.join(process.cwd(),'database.db'),
+        filename: process.env.DB_PATH || path.join(process.cwd(),'data/database.db'),
         driver: sqlite3.Database
     })
 }
