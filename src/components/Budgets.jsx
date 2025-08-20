@@ -16,7 +16,7 @@ export default function Budgets() {
     const [budgets, setBudgets] = React.useState(null);
     const load = React.useCallback(async () => {
         try {
-            const res = await fetch('http://localhost:8000/data/budgets', { cache: 'no-store' });
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/data/budgets`, { cache: 'no-store' });
             const json = await res.json();
             setBudgets(Array.isArray(json) ? json : []);
         } catch (e) {
@@ -59,7 +59,7 @@ export default function Budgets() {
         const prev = budgets;
         setBudgets(prev.filter(p => p.id !== id))
         try {
-            const res = await fetch(`http://localhost:8000/data/budgets/${id}`, {
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/data/budgets/${id}`, {
                 method: 'DELETE'
             })
             window.dispatchEvent(new Event('budgets:changed'));
@@ -85,7 +85,7 @@ export default function Budgets() {
         }
 
         try {
-            const res = await fetch(`http://localhost:8000/data/budgets/${id}?maximum=${maximum}&theme=${theme}`, {
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/data/budgets/${id}?maximum=${maximum}&theme=${theme}`, {
                 method: 'PATCH',
             })
             if (!res.ok) throw new Error(`Server responded ${res.status}`);
