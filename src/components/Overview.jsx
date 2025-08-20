@@ -18,13 +18,13 @@ export default function Overview() {
 
 
     const loadBudgets = React.useCallback(async () => {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/data/budgets`, { cache: 'no-store' });
+        const res = await fetch(`${import.meta.env.VITE_API_BASE}/data/budgets`, { cache: 'no-store' });
         const json = await res.json();
         setBudgets(Array.isArray(json) ? json : []);
     }, []);
 
     const loadPots = React.useCallback(async () => {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/data/pots`, { cache: 'no-store' });
+        const res = await fetch(`${import.meta.env.VITE_API_BASE}/data/pots`, { cache: 'no-store' });
         const json = await res.json();
         setPots(Array.isArray(json) ? json : []);
     }, []);

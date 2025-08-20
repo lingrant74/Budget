@@ -5,7 +5,7 @@ export function BudgetDialog({ ref, load }) {
     const [data, setData] = React.useState(null)
 
     React.useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/data/budgets`)
+        fetch(`${import.meta.env.VITE_API_URL}/data/budgets`)
             .then(res => res.json())
             .then(data => {
                 console.log("Fetched pots:", data);
@@ -28,7 +28,7 @@ export function BudgetDialog({ ref, load }) {
             theme: `#${String(theme)}`
         }
         try {
-            await fetch(`${process.env.REACT_APP_API_URL}/data/budgets`, {
+            await fetch(`${import.meta.env.VITE_API_BASE}/data/budgets`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(

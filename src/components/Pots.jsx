@@ -12,14 +12,14 @@ export default function Pots() {
     const [theme, setTheme] = React.useState('')
 
     const load = React.useCallback(async () => {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/data/pots`, { cache: 'no-store' });
+        const res = await fetch(`${import.meta.env.VITE_API_BASE}/data/pots`, { cache: 'no-store' });
         const json = await res.json();
         setData(Array.isArray(json) ? json : []);
     }, []);
 
     React.useEffect(() => { load(); }, [load]);
     React.useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/data/pots`)
+        fetch(`${import.meta.env.VITE_API_BASE}/data/pots`)
             .then(res => res.json())
             .then(data => {
                 console.log("Fetched pots:", data);
@@ -46,7 +46,7 @@ export default function Pots() {
             })
         })
         try {
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/data/pots/${id}/${delta}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_BASE}/data/pots/${id}/${delta}`, {
                 method: 'PATCH',
             })
             if (!res.ok) throw new Error(`Server responded ${res.status}`);
@@ -72,7 +72,7 @@ export default function Pots() {
         setData(prev => (Array.isArray(prev) ? prev.filter(p => p.id !== id) : prev));
 
         try {
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/data/pots/${id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_BASE}/data/pots/${id}`, {
                 method: 'DELETE'
             })
             window.dispatchEvent(new Event('pots:changed'));
@@ -93,7 +93,7 @@ export default function Pots() {
             theme: `#${String(theme)}`
         }
         try {
-            await fetch(`${process.env.REACT_APP_API_URL}/data/pots`, {
+            await fetch(`${import.meta.env.VITE_API_BASE}/data/pots`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(
