@@ -14,6 +14,7 @@ dist-ssr
 dist/
 *.env
 .DS_Store
+starter-code
 
 # Editor directories and files
 .vscode/*
